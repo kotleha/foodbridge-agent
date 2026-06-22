@@ -1,0 +1,28 @@
+{
+  "id": "recipient_capacity_mismatch",
+  "description": "The agent should not choose the nearest recipient if capacity is too small.",
+  "donation": {
+    "donor_name": "Stadium Catering",
+    "donor_contact": "events@stadium.example.test",
+    "pickup_address": "1 Arena Drive",
+    "food_items": [
+      {
+        "name": "boxed vegetarian meals",
+        "quantity": 120,
+        "category": "packaged",
+        "sealed": true
+      }
+    ],
+    "prepared_at": "2026-06-22T13:30:00",
+    "available_until": "2026-06-22T20:00:00",
+    "storage": "refrigerated",
+    "notes": "Meals are individually boxed and labeled."
+  },
+  "expected": {
+    "safety_status": "eligible",
+    "nearest_recipient_id": "rcp_maple_community_fridge",
+    "must_not_select_recipient_id": "rcp_maple_community_fridge",
+    "preferred_recipient_ids": ["rcp_sunrise_outreach", "rcp_elm_food_bank"],
+    "ranking_reason_contains_any": ["capacity", "120", "large", "too small"]
+  }
+}

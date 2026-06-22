@@ -1,0 +1,112 @@
+[
+  {
+    "recipient_id": "rcp_harbor_house",
+    "name": "Harbor House Shelter",
+    "recipient_type": "shelter",
+    "address": "45 Harbor Way",
+    "accepts_categories": ["prepared_meal", "packaged", "produce", "bakery"],
+    "capacity_meals": 80,
+    "hours": {
+      "monday": "08:00-21:00",
+      "tuesday": "08:00-21:00",
+      "wednesday": "08:00-21:00",
+      "thursday": "08:00-21:00",
+      "friday": "08:00-21:00",
+      "saturday": "09:00-18:00",
+      "sunday": "09:00-18:00"
+    },
+    "contact_method": "simulated",
+    "contact_value": "dispatch+harbor-house@example.test",
+    "pickup_supported": true,
+    "distance_miles_demo": 1.4,
+    "handling_notes": "Can accept refrigerated prepared meals when pickup occurs before the listed close time."
+  },
+  {
+    "recipient_id": "rcp_elm_food_bank",
+    "name": "Elm Street Food Bank",
+    "recipient_type": "food_bank",
+    "address": "210 Elm Street",
+    "accepts_categories": ["packaged", "produce", "bakery"],
+    "capacity_meals": 250,
+    "hours": {
+      "monday": "07:00-17:00",
+      "tuesday": "07:00-17:00",
+      "wednesday": "07:00-17:00",
+      "thursday": "07:00-17:00",
+      "friday": "07:00-17:00",
+      "saturday": "closed",
+      "sunday": "closed"
+    },
+    "contact_method": "simulated",
+    "contact_value": "dispatch+elm-food-bank@example.test",
+    "pickup_supported": false,
+    "distance_miles_demo": 2.2,
+    "handling_notes": "Prefers shelf-stable packaged goods and produce. Does not accept prepared meals in this MVP dataset."
+  },
+  {
+    "recipient_id": "rcp_maple_community_fridge",
+    "name": "Maple Community Fridge",
+    "recipient_type": "community_fridge",
+    "address": "88 Maple Ave",
+    "accepts_categories": ["packaged", "produce", "bakery"],
+    "capacity_meals": 30,
+    "hours": {
+      "monday": "10:00-20:00",
+      "tuesday": "10:00-20:00",
+      "wednesday": "10:00-20:00",
+      "thursday": "10:00-20:00",
+      "friday": "10:00-20:00",
+      "saturday": "10:00-20:00",
+      "sunday": "10:00-20:00"
+    },
+    "contact_method": "simulated",
+    "contact_value": "dispatch+maple-fridge@example.test",
+    "pickup_supported": false,
+    "distance_miles_demo": 0.6,
+    "handling_notes": "Small capacity. Does not accept unpackaged prepared meals."
+  },
+  {
+    "recipient_id": "rcp_sunrise_outreach",
+    "name": "Sunrise Outreach Kitchen",
+    "recipient_type": "shelter",
+    "address": "14 Sunrise Blvd",
+    "accepts_categories": ["prepared_meal", "packaged", "produce", "bakery"],
+    "capacity_meals": 140,
+    "hours": {
+      "monday": "06:00-22:00",
+      "tuesday": "06:00-22:00",
+      "wednesday": "06:00-22:00",
+      "thursday": "06:00-22:00",
+      "friday": "06:00-22:00",
+      "saturday": "06:00-22:00",
+      "sunday": "06:00-22:00"
+    },
+    "contact_method": "simulated",
+    "contact_value": "dispatch+sunrise@example.test",
+    "pickup_supported": true,
+    "distance_miles_demo": 3.8,
+    "handling_notes": "Can handle larger prepared-meal donations and has refrigerated storage."
+  },
+  {
+    "recipient_id": "rcp_river_mutual_aid",
+    "name": "River Mutual Aid Pantry",
+    "recipient_type": "mutual_aid",
+    "address": "302 River Road",
+    "accepts_categories": ["packaged", "produce", "bakery"],
+    "capacity_meals": 60,
+    "hours": {
+      "monday": "12:00-19:00",
+      "tuesday": "12:00-19:00",
+      "wednesday": "12:00-19:00",
+      "thursday": "12:00-19:00",
+      "friday": "12:00-19:00",
+      "saturday": "12:00-16:00",
+      "sunday": "closed"
+    },
+    "contact_method": "simulated",
+    "contact_value": "dispatch+river-pantry@example.test",
+    "pickup_supported": true,
+    "distance_miles_demo": 4.5,
+    "handling_notes": "Volunteer pickup may be available, but prepared meals require manual review."
+  }
+]

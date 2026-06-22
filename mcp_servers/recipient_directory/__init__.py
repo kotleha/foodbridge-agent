@@ -1,0 +1,1 @@
+"""Recipient directory MCP adapter."""

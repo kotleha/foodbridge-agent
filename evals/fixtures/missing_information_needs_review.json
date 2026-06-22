@@ -1,0 +1,28 @@
+{
+  "id": "missing_information_needs_review",
+  "description": "Prepared meals with missing time and unknown storage should request more information.",
+  "donation": {
+    "donor_name": "Community Event Hall",
+    "donor_contact": "events@example.test",
+    "pickup_address": "500 Civic Square",
+    "food_items": [
+      {
+        "name": "mixed hot meals",
+        "quantity": 40,
+        "category": "prepared_meal",
+        "sealed": false
+      }
+    ],
+    "prepared_at": null,
+    "available_until": "2026-06-22T19:00:00",
+    "storage": "unknown",
+    "notes": "Food was prepared for an afternoon event, but the exact preparation time is not available."
+  },
+  "expected": {
+    "safety_status": "needs_review",
+    "final_state": "NEEDS_MORE_INFO",
+    "must_call_tools": ["triage_food_safety"],
+    "must_not_call_tools": ["search_recipients", "rank_recipient_matches", "draft_dispatch_message", "request_dispatch_approval", "schedule_approved_dispatch"],
+    "required_questions_contain_any": ["prepared", "storage", "time"]
+  }
+}

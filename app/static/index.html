@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FoodBridge Agent</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Agents for Good</p>
+          <h1>FoodBridge Agent</h1>
+        </div>
+        <div class="topbar-status" id="service-status">Checking API</div>
+      </header>
+
+      <section class="control-strip" aria-label="Demo scenarios">
+        <button class="scenario-button active" type="button" data-scenario="happy_path">
+          Happy Path
+        </button>
+        <button class="scenario-button" type="button" data-scenario="unsafe_food">
+          Unsafe Food
+        </button>
+        <button class="scenario-button" type="button" data-scenario="prompt_injection">
+          Injection Probe
+        </button>
+        <button class="scenario-button" type="button" data-scenario="missing_info">
+          Missing Info
+        </button>
+        <button class="scenario-button" type="button" data-scenario="capacity_mismatch">
+          Capacity Match
+        </button>
+      </section>
+
+      <section class="workspace">
+        <form class="panel intake-panel" id="donation-form">
+          <div class="panel-heading">
+            <p class="eyebrow">Donation Intake</p>
+            <h2>Current Case</h2>
+          </div>
+
+          <label>
+            Donor
+            <input id="donor-name" name="donor_name" value="Bluebird Cafe" autocomplete="organization">
+          </label>
+          <label>
+            Contact
+            <input id="donor-contact" name="donor_contact" value="ops@bluebird.example.test" autocomplete="email">
+          </label>
+          <label>
+            Pickup Address
+            <input id="pickup-address" name="pickup_address" value="120 Market St">
+          </label>
+
+          <div class="form-row">
+            <label>
+              Food
+              <input id="food-name" name="food_name" value="sealed veggie wraps">
+            </label>
+            <label>
+              Quantity
+              <input id="quantity" name="quantity" type="number" min="1" value="24">
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label>
+              Category
+              <select id="category" name="category">
+                <option value="prepared_meal">Prepared meal</option>
+                <option value="packaged">Packaged</option>
+                <option value="produce">Produce</option>
+                <option value="bakery">Bakery</option>
+              </select>
+            </label>
+            <label>
+              Storage
+              <select id="storage" name="storage">
+                <option value="refrigerated">Refrigerated</option>
+                <option value="frozen">Frozen</option>
+                <option value="room_temperature">Room temperature</option>
+                <option value="unknown">Unknown</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="form-row datetime-row">
+            <label>
+              Prepared At
+              <input id="prepared-at" name="prepared_at" type="datetime-local" value="2026-06-22T15:00">
+            </label>
+            <label>
+              Available Until
+              <input id="available-until" name="available_until" type="datetime-local" value="2026-06-22T21:00">
+            </label>
+          </div>
+
+          <label class="checkbox-row">
+            <input id="sealed" name="sealed" type="checkbox" checked>
+            <span>Sealed</span>
+          </label>
+
+          <label>
+            Notes
+            <textarea id="notes" name="notes" rows="5">Kept cold.</textarea>
+          </label>
+
+          <div class="action-row">
+            <button type="submit" class="primary-action">Run Intake</button>
+            <button type="button" class="secondary-action" id="approve-button" disabled>Approve</button>
+            <button type="button" class="secondary-action danger" id="deny-button" disabled>Deny</button>
+          </div>
+        </form>
+
+        <section class="results-column" aria-live="polite">
+          <section class="status-grid">
+            <article class="metric">
+              <span>State</span>
+              <strong id="state-value">Not Run</strong>
+            </article>
+            <article class="metric">
+              <span>Safety</span>
+              <strong id="safety-value">Not Run</strong>
+            </article>
+            <article class="metric">
+              <span>Approval</span>
+              <strong id="approval-value">None</strong>
+            </article>
+          </section>
+
+          <section class="panel">
+            <div class="panel-heading inline">
+              <div>
+                <p class="eyebrow">Safety</p>
+                <h2>Decision</h2>
+              </div>
+              <span class="badge" id="safety-badge">idle</span>
+            </div>
+            <ul class="reason-list" id="reason-list"></ul>
+            <div class="signal-box hidden" id="injection-box"></div>
+            <div class="question-box hidden" id="question-box"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-heading inline">
+              <div>
+                <p class="eyebrow">Recipient Directory</p>
+                <h2>Ranked Matches</h2>
+              </div>
+              <span class="badge neutral" id="candidate-count">0 candidates</span>
+            </div>
+            <div class="recipient-list" id="recipient-list"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-heading">
+              <p class="eyebrow">Dispatch</p>
+              <h2>Draft Message</h2>
+            </div>
+            <pre class="message-preview" id="draft-message">No draft yet.</pre>
+          </section>
+
+          <section class="trace-layout">
+            <article class="panel">
+              <div class="panel-heading">
+                <p class="eyebrow">Tools</p>
+                <h2>Call Path</h2>
+              </div>
+              <ol class="compact-list" id="tool-list"></ol>
+            </article>
+
+            <article class="panel">
+              <div class="panel-heading">
+                <p class="eyebrow">Trace</p>
+                <h2>Workflow Events</h2>
+              </div>
+              <ol class="compact-list" id="trace-list"></ol>
+            </article>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>

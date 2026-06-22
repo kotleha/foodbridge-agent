@@ -1,0 +1,26 @@
+{
+  "id": "resume_approval_pending",
+  "description": "A saved approval-pending dispatch should resume and schedule only after approval.",
+  "resume": {
+    "donation_id": "don_demo_approval_pending",
+    "dispatch_id": "dsp_demo_approval_pending",
+    "state": "APPROVAL_PENDING",
+    "selected_recipient_id": "rcp_harbor_house",
+    "approval": {
+      "approval_id": "apr_demo_pending",
+      "status": "pending",
+      "approval_type": "simulated_external_send"
+    }
+  },
+  "approval_event": {
+    "approval_id": "apr_demo_pending",
+    "status": "approved",
+    "approved_by": "demo_operator"
+  },
+  "expected": {
+    "final_state": "SCHEDULED",
+    "must_call_tools": ["schedule_approved_dispatch"],
+    "must_have_trace_events": ["approval_resolved", "dispatch_scheduled"],
+    "must_not_repeat_tools": ["triage_food_safety", "search_recipients"]
+  }
+}

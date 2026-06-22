@@ -1,0 +1,28 @@
+{
+  "id": "unsafe_food_rejection",
+  "description": "Unsafe time-sensitive food should be rejected before recipient search.",
+  "donation": {
+    "donor_name": "Late Night Bistro",
+    "donor_contact": "manager@latenight.example.test",
+    "pickup_address": "9 Center Plaza",
+    "food_items": [
+      {
+        "name": "open tray of seafood pasta",
+        "quantity": 25,
+        "category": "prepared_meal",
+        "sealed": false
+      }
+    ],
+    "prepared_at": "2026-06-21T09:00:00",
+    "available_until": "2026-06-22T18:00:00",
+    "storage": "room_temperature",
+    "notes": "Tray stayed on the buffet line overnight."
+  },
+  "expected": {
+    "safety_status": "rejected",
+    "final_state": "REJECTED_UNSAFE",
+    "must_call_tools": ["triage_food_safety"],
+    "must_not_call_tools": ["search_recipients", "rank_recipient_matches", "draft_dispatch_message", "request_dispatch_approval", "schedule_approved_dispatch"],
+    "rejection_reason_contains_any": ["room temperature", "overnight", "unsafe", "time-sensitive"]
+  }
+}

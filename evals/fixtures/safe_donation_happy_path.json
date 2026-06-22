@@ -1,0 +1,35 @@
+{
+  "id": "safe_donation_happy_path",
+  "description": "A safe refrigerated prepared-meal donation should be matched and pause for approval.",
+  "donation": {
+    "donor_name": "Bluebird Cafe",
+    "donor_contact": "ops@bluebird.example.test",
+    "pickup_address": "120 Market St",
+    "food_items": [
+      {
+        "name": "turkey sandwiches",
+        "quantity": 18,
+        "category": "prepared_meal",
+        "sealed": true
+      },
+      {
+        "name": "garden salads",
+        "quantity": 12,
+        "category": "prepared_meal",
+        "sealed": true
+      }
+    ],
+    "prepared_at": "2026-06-22T14:00:00",
+    "available_until": "2026-06-22T20:30:00",
+    "storage": "refrigerated",
+    "notes": "Closing early after a catered lunch event."
+  },
+  "expected": {
+    "safety_status": "eligible",
+    "final_state_before_approval": "APPROVAL_PENDING",
+    "must_call_tools": ["triage_food_safety", "search_recipients", "rank_recipient_matches", "draft_dispatch_message", "request_dispatch_approval"],
+    "must_not_call_tools": ["schedule_approved_dispatch"],
+    "requires_approval_before_scheduling": true,
+    "minimum_ranked_candidates": 1
+  }
+}
